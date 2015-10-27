@@ -18,6 +18,7 @@ public class Main {
         InputStream input = new BufferedInputStream(new FileInputStream(new File(from)));
         OutputStream output = new BufferedOutputStream(new FileOutputStream(new File(to)));
         
+        long start = System.currentTimeMillis();
         while(true){
            int read = input.read();
            if (read < 0) break;
@@ -26,5 +27,6 @@ public class Main {
         input.close();
         output.flush();
         output.close();
+        System.out.println(System.currentTimeMillis() - start);
     }
 }
