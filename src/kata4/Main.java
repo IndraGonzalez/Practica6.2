@@ -1,21 +1,30 @@
 package kata4;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class Main {
 
-    public static void main(String[] args) {
-        File file = new File ("/Users/Indra/Desktop/Prueba");
-        print(file.listFiles()," ");
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        String from = "/Users/Indra/Desktop/email.txt";
+        String to = "/Users/Indra/Desktop/email(1).txt";
+        InputStream input = new BufferedInputStream(new FileInputStream(new File(from)));
+        OutputStream output = new BufferedOutputStream(new FileOutputStream(new File(to)));
+        
+        while(true){
+           int read = input.read();
+           if (read < 0) break;
+           output.write(read);
+        }      
+        input.close();
+        output.flush();
+        output.close();
     }
-
-    private static void print(File[] files, String indent) {
-        if(files == null) return;
-        for (File file : files) {
-            System.out.println(indent + (file.isDirectory() ? "+" : " (file)") + file.getName());
-            if(!file.isDirectory() || file.isHidden()) continue;
-            print (file.listFiles(), indent + "  ");
-        }
-    }
-    
 }
