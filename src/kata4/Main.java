@@ -14,15 +14,16 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         String from = "/Users/Indra/Desktop/email.txt";
-        String to = "/Users/Indra/Desktop/email(1).txt";
+        String to = "/Users/Indra/Desktop/email(2).txt";
         InputStream input = new BufferedInputStream(new FileInputStream(new File(from)));
         OutputStream output = new BufferedOutputStream(new FileOutputStream(new File(to)));
         
         long start = System.currentTimeMillis();
+        byte[] buffer = new byte [1024];
         while(true){
-           int read = input.read();
+           int read = input.read(buffer);
            if (read < 0) break;
-           output.write(read);
+           output.write(buffer);
         }      
         input.close();
         output.flush();
