@@ -6,11 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         File file = new File ("/Users/Indra/Desktop/Prueba");
-        print(file.listFiles());
-    }
-
-    private static void print(File[] files) {
-        print(files,"");
+        print(file.listFiles()," ");
     }
 
     private static void print(File[] files, String indent) {
